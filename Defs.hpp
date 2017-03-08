@@ -16,6 +16,8 @@ const Real SEPARATION_TOLERANCE( 1e-07  );
 const Real MINIMAL_SEPARATION_FACTOR( 1.0 + SEPARATION_TOLERANCE );
 
 
+#include <gsl/gsl_math.h>
+
 #ifdef _MSC_VER
 
 #ifdef GF_EXPORT

@@ -41,7 +41,7 @@ void register_event_class()
 
 void register_python_event_class()
 {
-    //register_python_event_class<PythonEvent>("PythonEvent");
+    register_python_event_class<PythonEvent>("PythonEvent");
 }
 
 void register_event_scheduler_class()
@@ -50,3 +50,9 @@ void register_event_scheduler_class()
 }
 
 } //namespace binding
+
+namespace boost
+{
+   template<>
+   inline const volatile binding::PythonEvent* get_pointer(const volatile binding::PythonEvent* p) { return p; }
+}

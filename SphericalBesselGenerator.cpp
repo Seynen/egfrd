@@ -170,48 +170,9 @@ static inline Real _y_smalln(UnsignedInteger n, Real z)
     }
 }
 
-//#define LOGSBG 1
 
-#ifdef LOGSBG
-#define LOGSBG_FILENAME "D:\\sbg.log"
-#include <windows.h>
-#include <fstream>
-LARGE_INTEGER liTime0;
-bool first = true;
 
 Real SphericalBesselGenerator::j(UnsignedInteger n, Real z) const
-{
-   std::ofstream f;
-   f.open(LOGSBG_FILENAME, std::ios::out | std::ios::app);
-   if (first)
-   {
-      first = false; QueryPerformanceCounter(&liTime0);
-      f << "BESSEL\tN\tZ\tTABLE\tGSL\tA.ERR\tR.ERR\tT.TAB\tT.GSL\tTIME" << std::endl;
-   }
-   LARGE_INTEGER liStart1, liStop1, liFreq;
-   QueryPerformanceCounter(&liStart1);
-   double j = _test_j(n, z);
-   QueryPerformanceCounter(&liStop1);
-   
-   LARGE_INTEGER liStart2, liStop2;
-   QueryPerformanceCounter(&liStart2);
-   double j_gsl = gsl_sf_bessel_jl(n, z);
-   QueryPerformanceCounter(&liStop2);
-
-   QueryPerformanceFrequency(&liFreq);
-   double t = 1E6*static_cast<double>(liStop1.QuadPart- liTime0.QuadPart) / liFreq.QuadPart;
-   double t1 = 1E6*static_cast<double>(liStop1.QuadPart - liStart1.QuadPart) / liFreq.QuadPart;
-   double t2 = 1E6*static_cast<double>(liStop2.QuadPart - liStart2.QuadPart) / liFreq.QuadPart;
-
-   f << "J\t" << n << "\t" << z << "\t" << j << "\t" << j_gsl << "\t" << std::fabs(j - j_gsl) << "\t" << std::fabs(j - j_gsl) / (j_gsl != 0 ? j_gsl : 1) << "\t" << t1 << "\t" << t2 << "\t" << t << std::endl;
-   f.close();
-   return j;
-}
-
-Real SphericalBesselGenerator::_test_j(UnsignedInteger n, Real z) const
-#else
-Real SphericalBesselGenerator::j(UnsignedInteger n, Real z) const
-#endif
 {
     if(n <= 3)
     {
@@ -239,40 +200,7 @@ Real SphericalBesselGenerator::j(UnsignedInteger n, Real z) const
     }
 }
 
-#ifdef LOGSBG
 Real SphericalBesselGenerator::y(const UnsignedInteger n, const Real z) const
-{
-   std::ofstream f;
-   f.open(LOGSBG_FILENAME, std::ios::out | std::ios::app);
-   if (first)
-   {
-      first = false; QueryPerformanceCounter(&liTime0);
-      f << "BESSEL\tN\tZ\tTABLE\tGSL\tA.ERR\tR.ERR\tT.TAB\tT.GSL\tTIME" << std::endl;
-   }
-   LARGE_INTEGER liStart1, liStop1, liFreq;
-   QueryPerformanceCounter(&liStart1);
-   double y = _test_y(n, z);
-   QueryPerformanceCounter(&liStop1);
-
-   LARGE_INTEGER liStart2, liStop2;
-   QueryPerformanceCounter(&liStart2);
-   double y_gsl = gsl_sf_bessel_yl(n, z);
-   QueryPerformanceCounter(&liStop2);
-
-   QueryPerformanceFrequency(&liFreq);
-   double t = 1E6*static_cast<double>(liStop1.QuadPart- liTime0.QuadPart) / liFreq.QuadPart;
-   double t1 = 1E6*static_cast<double>(liStop1.QuadPart - liStart1.QuadPart) / liFreq.QuadPart;
-   double t2 = 1E6*static_cast<double>(liStop2.QuadPart - liStart2.QuadPart) / liFreq.QuadPart;
-
-   f << "Y\t" << n << "\t" << z << "\t" << y << "\t" << y_gsl << "\t" << std::fabs(y - y_gsl) << "\t" << std::fabs(y - y_gsl) / (y_gsl != 0 ? y_gsl : 1) << "\t" << t1 << "\t" << t2 << "\t" << t << std::endl;
-   f.close();
-   return y;
-}
-
-Real SphericalBesselGenerator::_test_y(UnsignedInteger n, Real z) const
-#else
-Real SphericalBesselGenerator::y(const UnsignedInteger n, const Real z) const
-#endif
 {
     if(n <= 2)
     {

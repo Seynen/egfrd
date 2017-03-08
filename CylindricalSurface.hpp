@@ -7,7 +7,6 @@
 #include "freeFunctions.hpp"
 #include "StructureFunctions.hpp"
 #include "geometry.hpp"
-#include <gsl/gsl_math.h>
 
 
 template <typename Tobj_, typename Tid_, typename Ttraits_>

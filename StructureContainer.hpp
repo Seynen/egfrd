@@ -481,7 +481,7 @@ apply_boundary (std::pair<typename Ttraits_::position_type,
         if( new_id == pos_structure_id.second )
         {
             log_.warn("Plane is connected to itself, which is unsupported; no boundary condition will be applied at this call.");
-            //return pos_structure_id;
+            return pos_structure_id;
         }
     };
     

@@ -6,7 +6,6 @@
 #include "Plane.hpp"
 #include "freeFunctions.hpp"
 #include "StructureFunctions.hpp"
-#include <gsl/gsl_math.h>
 
 template <typename Tobj_, typename Tid_, typename Ttraits_>
 class StructureContainer;

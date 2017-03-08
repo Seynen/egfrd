@@ -34,12 +34,6 @@ public:
     static UnsignedInteger getMaxNY();
 
     static SphericalBesselGenerator const& instance();
-
-
-
-
-    Real _test_j(UnsignedInteger n, Real z) const;
-    Real _test_y(UnsignedInteger n, Real z) const;
 };
 
 

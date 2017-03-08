@@ -101,13 +101,17 @@ public:
     return this->estimated_alpha_root_distance_;
     }
 
-    virtual Real drawTime(Real rnd) const;
+    virtual Real drawTime( const Real rnd) const;
 
-    virtual EventKind drawEventType(Real rnd,  Real t ) const;
+    virtual EventKind drawEventType( const Real rnd, 
+				   const Real t ) const;
     
-    virtual Real drawR( Real rnd, Real t ) const;
+    virtual Real drawR( const Real rnd, 
+		      const Real t ) const;
     
-    virtual Real drawTheta( Real rnd, Real r, Real t ) const;
+    virtual Real drawTheta( const Real rnd,
+			  const Real r, 
+			  const Real t ) const;
       
     const Real f_alpha0( const Real alpha ) const;
   

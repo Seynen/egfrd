@@ -3534,21 +3534,20 @@ protected:
     {
         switch (kind)
         {
+        default: /* never get here */ BOOST_ASSERT(0); break;
         case SINGLE_EVENT_ESCAPE:
             return "escape";
 
         case SINGLE_EVENT_REACTION:
             return "reaction";
         }
-        
-         BOOST_ASSERT(0); 
-         return "error";
     }
 
     static std::string stringize_event_kind(enum pair_event_kind kind)
     {
         switch (kind)
         {
+        default: /* never get here */ BOOST_ASSERT(0); break;
         case PAIR_EVENT_SINGLE_REACTION_0:
             return "reaction(0)";
 
@@ -3567,9 +3566,6 @@ protected:
         case PAIR_EVENT_IV_REACTION:
             return "iv_reaction";
         }
-
-        BOOST_ASSERT(0);
-        return "error";
     }
 
     static std::string stringize_event(single_event const& ev)
