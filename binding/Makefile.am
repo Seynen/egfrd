@@ -33,7 +33,7 @@ noinst_HEADERS = \
 	exception_classes.hpp \
 	Identifier.hpp \
 	LogAppender.hpp \
-	Logger.hpp \
+	LoggerB.hpp \
 	LoggerManager.hpp \
 	matrix_space_classes.hpp \
 	MatrixSpace.hpp \
@@ -96,7 +96,7 @@ libbinding_utils_la_SOURCES = \
 	bd_propagator_class.cpp \
 	new_bd_propagator_class.cpp \
 	box_class.cpp \
-	ConsoleAppender.cpp \
+	ConsoleAppenderB.cpp \
 	cylinder_class.cpp \
 	disk_class.cpp \
 	domain_classes.cpp \
