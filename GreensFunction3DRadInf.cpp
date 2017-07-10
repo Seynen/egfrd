@@ -27,7 +27,7 @@
 #include "SphericalBesselGenerator.hpp"
 
 #include "GreensFunction3DRadInf.hpp"
-
+#include <iomanip>
 
 
 const Real GreensFunction3DRadInf::TOLERANCE = 1e-8;
@@ -658,8 +658,10 @@ void GreensFunction3DRadInf::makeRnTable(RealVector& RnTable,
 
         if(n >= this->MAX_ORDER)
         {
-            log_.info("GreensFunction3DRadInf: Rn didn't converge");
-            break;
+           std::ostringstream ss;
+           ss << "Rn didn't converge, t=" << std::setprecision(16) << t << ", r=" << r << "const: " << dump();
+           log_.info(ss.str().c_str());
+           break;
         }
         
         Rn_prev = fabs(Rn);
